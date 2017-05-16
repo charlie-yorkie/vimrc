@@ -160,7 +160,7 @@ vnoremap <C-C> "+y
 ""---------------------------------------------------------
 ""==== NERDTree ====
 "map <F7> :NERDTreeToggle<CR>
-map <leader>r :NERDTreeFind<cr>
+map <leader>r :NERDTreeFind<CR>
 "" To close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeMouseMode = 3
