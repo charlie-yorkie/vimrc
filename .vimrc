@@ -27,7 +27,7 @@ Plugin 'chazy/cscope_maps'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
 "Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-syntastic/syntastic'
+"Plugin 'vim-syntastic/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdcommenter'
@@ -160,6 +160,7 @@ vnoremap <C-C> "+y
 ""---------------------------------------------------------
 ""==== NERDTree ====
 "map <F7> :NERDTreeToggle<CR>
+map <leader>r :NERDTreeFind<cr>
 "" To close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeMouseMode = 3
