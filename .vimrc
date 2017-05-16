@@ -201,16 +201,16 @@ let g:tagbar_singleclick = 1
 let g:ctrlp_match_window = 'results:100'
 
 ""==== Syntastic ====
-map <leader>ss :SyntasticCheck<cr>
-map <leader>so :Errors<cr>
-map <leader>sc :lclose<cr>
+"map <leader>ss :SyntasticCheck<cr>
+"map <leader>so :Errors<cr>
+"map <leader>sc :lclose<cr>
 "" automatically load errors into the location list
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
 "" check for errors when a file is loaded into Vim
 "let g:syntastic_check_on_open = 1
 "" not check errors whenever you save the file
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_check_on_wq = 0
 
 ""==== ctags key mappings ====
 "" tag stack
