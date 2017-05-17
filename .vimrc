@@ -198,6 +198,7 @@ let g:tagbar_singleclick = 1
 "" Press <C-f> and <C-b> to cycle between modes.
 "" Press <C-d> to switch to filename only search instead of full path.
 "" Press <C-r> to switch to regexp mode.
+let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_match_window = 'results:100'
 
 ""==== Syntastic ====
