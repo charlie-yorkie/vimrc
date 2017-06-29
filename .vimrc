@@ -1,6 +1,11 @@
 ""---------------------------------------------------------
 ""  Vundle, the plug-in manager for Vim
 ""---------------------------------------------------------
+"" Set up Vundle
+"" ------------------------------------
+"" $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"" $ vim +PluginInstall +qall
+"" ------------------------------------
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -26,8 +31,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'chazy/cscope_maps'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'vim-syntastic/syntastic'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'vim-syntastic/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdcommenter'
@@ -198,20 +203,21 @@ let g:tagbar_singleclick = 1
 "" Press <C-f> and <C-b> to cycle between modes.
 "" Press <C-d> to switch to filename only search instead of full path.
 "" Press <C-r> to switch to regexp mode.
+map <leader>b :CtrlPBuffer<CR>
 let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_match_window = 'results:100'
 
 ""==== Syntastic ====
-"map <leader>ss :SyntasticCheck<cr>
-"map <leader>so :Errors<cr>
-"map <leader>sc :lclose<cr>
+" map <leader>ss :SyntasticCheck<cr>
+" map <leader>so :Errors<cr>
+" map <leader>sc :lclose<cr>
 "" automatically load errors into the location list
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
 "" check for errors when a file is loaded into Vim
 "let g:syntastic_check_on_open = 1
 "" not check errors whenever you save the file
-"let g:syntastic_check_on_wq = 0
+" let g:syntastic_check_on_wq = 0
 
 ""==== ctags key mappings ====
 "" tag stack
