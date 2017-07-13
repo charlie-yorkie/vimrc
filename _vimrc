@@ -34,7 +34,7 @@ Plugin 'jiangmiao/auto-pairs'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'vim-syntastic/syntastic'
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+" Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'crusoexia/vim-monokai'
@@ -145,10 +145,10 @@ let g:mapleader = ","
 
 nmap <leader>w :w<cr>
 nmap <leader>q :qa<cr>
-nnoremap <C-H> <C-w>h
-nnoremap <C-J> <C-w>j
-nnoremap <C-K> <C-w>k
-nnoremap <C-L> <C-w>l
+" nnoremap <C-H> <C-w>h
+" nnoremap <C-J> <C-w>j
+" nnoremap <C-K> <C-w>k
+" nnoremap <C-L> <C-w>l
 
 "" go to the next buffer
 nmap <S-L> :bnext<CR>
@@ -164,14 +164,14 @@ vnoremap <C-C> "+y
 "" Plugins
 ""---------------------------------------------------------
 ""==== NERDTree ====
-"map <F7> :NERDTreeToggle<CR>
+map <F7> :NERDTreeToggle<CR>
 map <leader>r :NERDTreeFind<CR>
 "" To close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeMouseMode = 3
 
 ""==== NERDTreeTabs ====
-map <F7> :NERDTreeMirrorToggle<CR>
+" map <F7> :NERDTreeMirrorToggle<CR>
 "let g:nerdtree_tabs_open_on_console_startup = 1
 
 ""==== NERDCommenter ====
