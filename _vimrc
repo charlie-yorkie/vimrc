@@ -309,3 +309,4 @@ let g:session_autoload = 'yes'
 nnoremap <C-M> :BookmarkNext<CR>
 "" enable auto_save may erase all marks while exiting ctrlp's quick window
 let g:bookmark_auto_save = 0
+
