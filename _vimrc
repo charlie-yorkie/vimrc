@@ -31,13 +31,14 @@ Plugin 'majutsushi/tagbar'
 Plugin 'chazy/cscope_maps'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'MattesGroeger/vim-bookmarks'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'vim-syntastic/syntastic'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'crusoexia/vim-monokai'
+Plugin 'pangloss/vim-javascript'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 "" ------------------------------------
@@ -77,24 +78,28 @@ colorscheme monokai
 ""---------------------------------------------------------
 ""  User Interface
 ""---------------------------------------------------------
+set hidden
 set number              " show line numbers
 set showcmd             " show command in bottom bar
 set mouse=nv            " enable mouse use in all modes
 set wildmenu            " visual autocomplete for command menu
 set cursorline          " highlight current line
 set laststatus=2        " always have a status line
+" :%!xxd                " hex mode
+" :%!xxd -r             " hex mode reverted
 
 ""---------------------------------------------------------
 ""  Indentation
 ""---------------------------------------------------------
 set tabstop=4           " 4 space tab
-set expandtab           " use spaces for tabs
+" set expandtab           " use spaces for tabs
 set softtabstop=4       " 4 space tab
 set shiftwidth=4
 set modelines=1
 filetype indent on      " load filetype-specific indent files
 "filetype plugin on
 set autoindent          " autoindent
+set pastetoggle=<F9>    " toggle auto-indenting for code paste
 
 "" >>   Indent line by shiftwidth spaces
 "" <<   De-indent line by shiftwidth spaces
@@ -112,6 +117,39 @@ set autoindent          " autoindent
 
 "" >i{  Increase inner block indent
 "" <i{  Decrease inner block indent
+
+""---------------------------------------------------------
+""  Editing 
+""---------------------------------------------------------
+"" [normal mode]
+"" yank the visually select to clipboard
+vnoremap <C-C> "+y
+"" copy then paste multiple times
+vnoremap p pgvy
+
+"" [insert mode]
+"" <C-H> : Backspace
+"" <C-W> : Delete a word
+"" <C-N> : Keyword completion
+"" <C-O> : Switches to normal mode for one command
+"" <C-R> {0-9a-z"%#*+:.-=} : Insert the contents of a register.
+
+""---------------------------------------------------------
+""  Motion
+""---------------------------------------------------------
+"" [normal mode]
+"" <C-E> : Scroll window [count] lines downwards in the buffer.
+"" <C-Y> : Scroll window [count] lines upwards in the buffer.
+
+"" [insert mode]
+"" move cursor to the end of line
+inoremap <C-E> <C-O>$
+"" move cursor to the head of line
+inoremap <C-A> <C-O>0
+"" move cursor one character left
+inoremap <C-K> <C-O>h
+"" move cursor one character right
+inoremap <C-L> <C-O>l
 
 ""---------------------------------------------------------
 ""  Searching and Replace
@@ -134,45 +172,43 @@ set foldlevelstart=10   " open most folds by default
 set foldnestmax=10      " 10 nested fold max
 nnoremap <space> za     " space open/closes folds
 set foldmethod=syntax
-"set foldmethod=indent   " fold based on indent level
+" set foldmethod=indent   " fold based on indent level
 
 ""---------------------------------------------------------
 ""  Key Mapping
 ""---------------------------------------------------------
-"let mapleader=";"       " leader is semicolon
 let mapleader = ","
 let g:mapleader = ","
 
-nmap <leader>w :w<cr>
-nmap <leader>q :qa<cr>
-" nnoremap <C-H> <C-w>h
+nnoremap <leader>w :w<cr>
+nnoremap <leader>q :qa<cr>
 " nnoremap <C-J> <C-w>j
 " nnoremap <C-K> <C-w>k
-" nnoremap <C-L> <C-w>l
+nnoremap <C-H> <C-w>h
+nnoremap <C-L> <C-w>l
 
-"" go to the next buffer
-nmap <S-L> :bnext<CR>
 "" go to the previous buffer
-nmap <S-H> :bprevious<CR>
+nnoremap <S-H> :bprevious<CR>
+"" go to the next buffer
+nnoremap <S-L> :bnext<CR>
 "" close the current buffer
-"nmap <leader>x :bdelete<cr>
+" nnoremap <leader>x :bdelete<cr>
 nnoremap <Leader>x :Bdelete<CR>
-"" yank the visually select to clipboard
-vnoremap <C-C> "+y
-
+"" <C-6> to switch back and forth between two buffers in the same window.
+if &diff
+	nnoremap ] ]c
+	nnoremap [ [c
+	nnoremap <C-D> do
+endif
 ""---------------------------------------------------------
 "" Plugins
 ""---------------------------------------------------------
 ""==== NERDTree ====
-map <F7> :NERDTreeToggle<CR>
-map <leader>r :NERDTreeFind<CR>
+nnoremap <F7> :NERDTreeToggle<CR>
+nnoremap <leader>r :NERDTreeFind<CR>
 "" To close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeMouseMode = 3
-
-""==== NERDTreeTabs ====
-" map <F7> :NERDTreeMirrorToggle<CR>
-"let g:nerdtree_tabs_open_on_console_startup = 1
 
 ""==== NERDCommenter ====
 "" Toggles the comment state of the selected line(s).
@@ -185,7 +221,7 @@ let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 ""==== Tagbar ====
-map <F8> :TagbarToggle<CR>
+nnoremap <F8> :TagbarToggle<CR>
 let g:tagbar_sort = 0
 let g:tagbar_singleclick = 1
 "let g:tagbar_autofocus = 1
@@ -197,13 +233,26 @@ let g:tagbar_singleclick = 1
 ""     {Hello world!}
 "" to change it to
 ""     'Hello world!'
+"" remove the delimiters entirely, press ds'.
+""      Hello world!
+"" with the cursor on "Hello", press ysiw] (iw is a text object).
+""     [Hello] world!
+
+"" An asterisk (*) is used to denote the cursor position.
+""   Old text                  Command     New text ~
+""   'Hello *world!'           ds'         Hello world!
+""   [123+4*56]/2              cs])        (123+456)/2
+""   'Look ma, I'm *HTML!'     cs'<q>      <q>Look ma, I'm HTML!</q>
+""   if *x>3 {                 ysW(        if ( x>3 ) {
+""   my $str = *whee!;         vllllS'     my $str = 'whee!';
+
 
 ""==== CtrlP ====
 "" Press <C-p> to run CtrlP
 "" Press <C-f> and <C-b> to cycle between modes.
 "" Press <C-d> to switch to filename only search instead of full path.
 "" Press <C-r> to switch to regexp mode.
-map <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
 let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_match_window = 'results:100'
 
@@ -224,8 +273,8 @@ let g:ctrlp_match_window = 'results:100'
 ""   g + Left MouseClick = Ctrl + ]
 ""   g + Right MouseClick = Ctrl + T
 "" jump list
-""   Ctrl + O = Go to Older cursor position in jump list
-""   Ctrl + I = Go to newer cursor position in jump list
+""   Ctrl + O : Go to Older cursor position in jump list
+""   Ctrl + I : Go to newer cursor position in jump list
 
 ""==== cscope key mappings ====
 "" <C-\>s   symbol: find all references to the token under cursor
@@ -243,6 +292,7 @@ set cscopetagorder=1
 ""==== Vim Airline ====
 let g:airline_theme='molokai'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_inactive_collapse=0
@@ -251,3 +301,11 @@ let g:airline_inactive_collapse=0
 let g:session_autosave = 'yes'
 let g:session_autoload = 'yes'
 
+"" ==== Vim Bookmarks ====
+"" mm(:BookmarkToggle) :  Add/remove bookmark at current line
+"" mn(:BookmarkNext)   :  Jump to next bookmark in buffer
+"" mp(:BookmarkPrev)   :  Jump to previous bookmark in buffer
+"" ma(:BookmarkShowAll):  Show all bookmarks (toggle)
+nnoremap <C-M> :BookmarkNext<CR>
+"" enable auto_save may erase all marks while exiting ctrlp's quick window
+let g:bookmark_auto_save = 0
