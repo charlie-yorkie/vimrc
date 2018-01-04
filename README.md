@@ -32,6 +32,20 @@ Set up plugin manager(**_[Vundle](https://github.com/VundleVim/Vundle.vim)_** or
 > [git] Most of the features should work with Git 1.7 or above. However, installing plugins with tags is known to fail if Git is older than 1.7.10. Git 1.8 or greater is recommended.
 ----
 
+Plugins
+-------
+* [Vundle](https://github.com/VundleVim/Vundle.vim): Vundle is short for Vim bundle and is a Vim plugin manager.
+* [NERDTree](https://github.com/scrooloose/nerdtree): The NERDTree is a file system explorer for the Vim editor.
+* [TagBar](https://github.com/majutsushi/tagbar): Tagbar is a Vim plugin that provides an easy way to browse the tags of the current file and get an overview of its structure.
+* [ctrlp](https://github.com/ctrlpvim/ctrlp.vim): Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
+* [cscope_maps](https://github.com/chazy/cscope_maps): It magically assigns awesome cscope maps to your vim sessions turning your
+VIM session into a superior IDE.
+* [NERD Commenter](https://github.com/scrooloose/nerdcommenter): Comment functions so powerful—no comment necessary.
+* [Auto Pairs](https://github.com/jiangmiao/auto-pairs): Insert or delete brackets, parens, quotes in pair.
+* [vim-surround](https://github.com/tpope/vim-surround): Surround.vim is all about "surroundings": parentheses, brackets, quotes, XML tags, and more.
+* [vim-session](https://github.com/xolox/vim-session): Extended session management for Vim.
+* [vim-airline](https://github.com/vim-airline/vim-airline): Lean & mean status/tabline for vim that's light as air.
+
 Reference
 ----
 * [VimAwesome](https://vimawesome.com/)
